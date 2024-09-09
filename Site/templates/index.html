@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página Inicial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="quem-somos">Quem Somos</a></li>
+                <li><a href="contato">Contato</a></li>
+                <li><a href="login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="quem-somos">
+            <h1>Quem Somos</h1>
+            <p>Conteúdo sobre quem somos.</p>
+        </section>
+        <section id="contato">
+            <h1>Contato</h1>
+            <p>Informações de contato.</p>
+        </section>
+        <section id="login">
+            <h1>Login</h1>
+            <p>Formulário de login.</p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Adicionando a imagem no topo -->
+        <img src="{{ url_for('static', filename='image.png') }}" alt="Logo" class="login-logo">
+        
+        <div class="login-box">
+            <h2>Login</h2>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.username.label }}<br>
+                    {{ form.username(size=32) }}<br>
+                </div>
+                <div>
+                    {{ form.password.label }}<br>
+                    {{ form.password(size=32) }}<br>
+                </div>
+                <div>
+                    {{ form.submit() }}
+                </div>
+            </form>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <script>
+        // Exibir e esconder mensagens flash automaticamente
+        window.addEventListener('load', function() {
+            var flashMessages = document.querySelectorAll('.flash-message');
+            
+            flashMessages.forEach(function(message) {
+                setTimeout(function() {
+                    message.classList.add('show');
+                }, 100);
+
+                setTimeout(function() {
+                    message.classList.remove('show');
+                }, 4000);
+            });
+        });
+    </script>
+</body>
+</html>

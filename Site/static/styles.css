@@ -1,0 +1,57 @@
+/* Centralizar o container do login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin-top: -100px;
+}
+
+.login-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: -100px;
+}
+
+/* Caixa de login centralizada */
+.login-box {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    margin-top: -100px;
+}
+
+/* Estilos do formulário */
+h2 {
+    margin-bottom: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+.flash-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.flash-message.show {
+    opacity: 1;
+    transform: translate(-50%, -40%);
+}

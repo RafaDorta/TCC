@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: margin-left 0.3s;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px; /* Largura expandida */
+    height: 100%;
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 20%);
+    transition: width 0.3s;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px 0;
+    transition: background-color 0.3s;
+}
+
+.sidebar-menu {
+    display: block;
+    margin-top: 60px;
+}
+
+.sidebar-menu a {
+    display: block;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.sidebar-menu a:hover {
+    background-color: #575757;
+}
+
+.menu-toggle:checked ~ .sidebar {
+    width: 60px; /* Largura retraída */
+}
+
+.menu-toggle:checked ~ .sidebar .sidebar-menu {
+    display: none;
+}
+
+.menu-toggle:checked ~ .sidebar .bar {
+    background-color: hsl(0, 0%, 100%);
+}
+
+.content {
+    margin-left: 250px; /* Ajuste inicial para o conteúdo não sobrepor a barra lateral */
+    transition: margin-left 0.3s;
+}
+
+.menu-toggle:checked ~ .content {
+    margin-left: 60px; /* Ajuste quando a barra lateral estiver retraída */
+}
