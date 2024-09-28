@@ -36,8 +36,8 @@
 
     <script>
         // Dados do gráfico enviados pelo Flask
-        var labels = JSON.parse('{{ labels | tojson | safe }}');  // Usando tojson para formatar corretamente
-        var data = JSON.parse('{{ data | tojson | safe }}');
+        var labels = JSON.parse('{{ labels | safe }}');
+        var data = JSON.parse('{{ data | safe }}');
 
         // Configuração do gráfico usando Chart.js
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -46,8 +46,8 @@
             data: {
                 labels: labels,  // Datas no eixo X
                 datasets: [{
-                    label: 'Velocidade',
-                    data: data,  // Valores de velocidade no eixo Y
+                    label: 'Dados do Gráfico',
+                    data: data,  // Valores no eixo Y
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2,
                     fill: false
