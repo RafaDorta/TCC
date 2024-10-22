@@ -9,7 +9,7 @@
 <body>
     <div class="login-container">
         <!-- Adicionando a imagem no topo -->
-        <img src="{{ url_for('static', filename='image.png') }}" alt="Logo" class="login-logo">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo" class="login-logo">
         
         <div class="login-box">
             <h2>Login</h2>
@@ -30,8 +30,8 @@
 
             <div class="login-options">
                 <div class="link-container">
-                <a href="{{ url_for('register') }}" class="create-account">Criar Conta</a>
-            </div>
+                    <a href="{{ url_for('register') }}" class="create-account">Criar Conta</a>
+                </div>
                 <a href="{{ url_for('forgot_password') }}" class="forgot-password">Esqueci a Senha</a>
             </div>
 

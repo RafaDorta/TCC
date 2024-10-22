@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatos em PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relatos</h1>
+    <ul>
+        {% for result in results %}
+            <li>
+                <strong>Data:</strong> {{ result.date.strftime('%d/%m/%Y') }} <br>
+                <strong>Local:</strong> {{ result.address }} <br>
+                <strong>Horário:</strong> {{ result.date.strftime('%H:%M:%S') }} <br>
+                <strong>Velocidade:</strong> {{ result.speed }} KM/H <br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -9,23 +9,25 @@ body {
 }
 
 .sidebar {
-    position: fixed;
+    position: fixed; /* Mantém o sidebar fixo */
     top: 0;
     left: 0;
     width: 200px; /* Largura expandida */
     height: 100%;
-    background-color: hsl(0, 0%, 20%);
-    color: hsl(0, 0%, 20%);
+    background-color: hsl(0, 0%, 20%); /* Ajustado para a cor do Style 3 */
+    color: #fff;
     transition: width 0.3s;
     overflow-x: hidden;
     padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-toggle {
     position: absolute;
-    top: 20px;
-    left: 10px;
+    top: 20px; /* Ajustado para o estilo 3 */
+    left: 10px; /* Ajustado para o estilo 3 */
     cursor: pointer;
+    z-index: 1000;
 }
 
 .bar {
@@ -38,20 +40,22 @@ body {
 }
 
 .sidebar-menu {
-    display: block;
     margin-top: 60px;
+    visibility: visible; /* Manter visibilidade padrão */
+    opacity: 1; /* Manter opacidade padrão */
+    transition: opacity 0.3s, visibility 0.3s;
 }
 
 .sidebar-menu a {
     display: block;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Ajustado para o estilo 3 */
     text-decoration: none;
     transition: background-color 0.3s;
 }
 
 .sidebar-menu a:hover {
-    background-color: #575757;
+    background-color: #575757; /* Ajustado para o estilo 3 */
 }
 
 .menu-toggle:checked ~ .sidebar {
@@ -59,7 +63,13 @@ body {
 }
 
 .menu-toggle:checked ~ .sidebar .sidebar-menu {
-    display: none;
+    visibility: hidden;
+    opacity: 0; /* Ajustado para manter o efeito de transição */
+}
+
+.menu-toggle:checked ~ .sidebar .sidebar-menu a {
+    text-align: center;
+    padding: 12px 0; /* Mantido conforme o original */
 }
 
 .menu-toggle:checked ~ .sidebar .bar {
@@ -67,13 +77,78 @@ body {
 }
 
 .content {
-    margin-left: 250px; /* Ajuste inicial para o conteúdo não sobrepor a barra lateral */
+    margin-left: 250px; /* Ajuste inicial para o conteúdo */
     transition: margin-left 0.3s;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh; /* Garante que o conteúdo ocupe toda a altura */
 }
 
 .menu-toggle:checked ~ .content {
     margin-left: 100px; /* Ajuste quando a barra lateral estiver retraída */
 }
+
+h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+select:focus, button:focus {
+    outline: none;
+    border-color: #333;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.grafico-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.grafico-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Campos de entrada e seleção */
 input[type="text"],
@@ -137,62 +212,4 @@ label {
     margin-bottom: 8px;
     color: #333;
     display: block; /* Alinha rótulos com os campos */
-}
-
-/* Container para os serviços */
-.services-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espaçamento entre os cartões */
-}
-
-/* Cartão de serviço */
-.service-card {
-    background-color: #f9f9f9; /* Fundo claro para os cartões */
-    border: 1px solid #ddd; /* Borda leve */
-    border-radius: 8px; /* Bordas arredondadas */
-    padding: 15px; /* Padding interno */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
-
-/* Informações do serviço */
-.service-info {
-    font-size: 18px; /* Tamanho maior para destaque */
-    color: #333; /* Cor do texto */
-}
-
-/* Localizações do serviço */
-.service-location {
-    font-size: 16px; /* Tamanho padrão */
-    color: #555; /* Cor mais clara */
-    margin-top: 5px; /* Espaçamento superior */
-}
-
-/* Preço e designação */
-.service-price {
-    font-size: 16px; /* Tamanho padrão */
-    color: #333; /* Cor do texto */
-    margin-top: 10px; /* Espaçamento superior */
-}
-
-/* Estilo do botão de designação */
-input[type="submit"] {
-    background-color: #007bff; /* Cor de fundo */
-    color: #fff; /* Cor do texto */
-    border: none; /* Sem borda */
-    cursor: pointer; /* Mão ao passar o mouse */
-    padding: 10px; /* Padding uniforme */
-    margin-top: 5px; /* Espaçamento acima */
-    border-radius: 4px; /* Bordas arredondadas */
-    transition: background-color 0.3s; /* Transição suave */
-}
-
-/* Efeito de hover para o botão */
-input[type="submit"]:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
-}
-
-/* Estilo para rótulos em negrito */
-strong {
-    color: #333; /* Cor do texto em negrito */
 }

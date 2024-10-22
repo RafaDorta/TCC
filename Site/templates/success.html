@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles3.css') }}">
-    <link rel="script" href="{{ url_for('static', filename='script.js') }}">
 </head>
 <body>
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -17,13 +16,41 @@
         </label>
         <nav class="sidebar-menu">
             <a href="/graficos">Gráficos</a>
-            <a href="#">Relátorios</a>
-            <a href="#">Serviços</a>
-            <a href="/login">Sair</a>
+            <a href="/relatorio">Relatórios</a>
+            <a href="/servicos">Serviços</a>
+            <a href="/logout">Sair</a>
         </nav>
     </div>
     <div class="content">
-        <h1>{{ name }}</h1> <!-- Aqui o nome do usuário será inserido -->
+        <h1>Bem-vindo, {{ name }}!</h1>
+        
+        <h2>Próximo Serviço</h2>
+{% if upcoming_services %}
+    <li>
+        <strong>Nome:</strong> {{ upcoming_services[0].name }}<br>
+        <strong>Data:</strong> R$ {{ upcoming_services[0].date.strftime('%d/%m/%y')}}<br>
+        <strong>Local de Saída:</strong> {{ upcoming_services[0].departure }}<br>
+        <strong>Local de Chegada:</strong> {{ upcoming_services[0].arrival }}<br>
+        <strong>Horário:</strong> {{ upcoming_services[0].time }}<br>
+        <strong>Preço:</strong> R$ {{ upcoming_services[0].price }}<br>
+    </li>
+{% else %}
+    <li>Nenhum serviço programado.</li>
+{% endif %}
+
+
+<h2>Último Serviço Realizado</h2>
+{% if recent_service %}
+    <div>
+        <strong>Nome:</strong> {{ recent_service.name }}<br>
+        <strong>Local de Saída:</strong> {{ recent_service.departure }}<br>
+        <strong>Local de Chegada:</strong> {{ recent_service.arrival }}<br>
+        <strong>Horário:</strong> {{ recent_service.time }}<br>
+        <strong>Preço:</strong> R$ {{ recent_service.price }}<br>
     </div>
+{% else %}
+    <p>Nenhum serviço realizado ainda.</p>
+{% endif %}
+
 </body>
 </html>

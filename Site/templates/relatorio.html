@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style5.css') }}">
+    <style>
+        /* Adiciona espaço entre os itens da lista */
+        .result-item {
+            margin-bottom: 20px; /* Ajuste o valor conforme necessário */
+        }
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+<label for="menu-toggle" class="sidebar-toggle">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</label>
+    <div class="sidebar">
+        <nav class="sidebar-menu">
+            <a href="/success">Inicio</a>
+            <a href="/graficos">Gráficos</a>
+            <a href="#">Relatórios</a>
+            <a href="/servicos">Serviços</a>
+            <a href="{{ url_for('logout') }}">Sair</a>
+        </nav>
+    </div>
+    <div class="content">
+        <h1>Buscar Relatos por Usuário</h1>
+        
+        <form method="POST" action="{{ url_for('relatorio') }}">
+            <label for="username">Selecionar Usuário:</label>
+            <select id="username" name="username" required>
+                <option value="">Selecione um usuário</option>
+                {% for user in users %}
+                    <option value="{{ user }}">{{ user }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Buscar Relatos</button>
+        </form>
+
+        {% if results %}
+            <h2>Resultados:</h2>
+            <ul>
+                {% for result in results %}
+                    <li class="result-item">
+                        <strong>Data:</strong> {{ result.date.strftime('%d/%m/%Y') }} <br>
+                        <strong>Local:</strong> {{ result.address }} <br>
+                        <strong>Horário:</strong> {{ result.date.strftime('%H:%M:%S') }} <br>
+                        <strong>Velocidade:</strong> {{ result.speed }} KM/H <br>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form method="POST" action="{{ url_for('generate_pdf') }}">
+                <input type="hidden" name="username" value="{{ results[0]['username'] }}">
+                <button type="submit">Gerar PDF</button>
+            </form>
+        {% else %}
+            <p>Nenhum resultado encontrado.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

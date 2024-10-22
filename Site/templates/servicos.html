@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles3.css') }}">
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <div class="sidebar">
+        <label for="menu-toggle" class="sidebar-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </label>
+        <nav class="sidebar-menu">
+            <a href="/success">Início</a>
+            <a href="/graficos">Gráficos</a>
+            <a href="/relatorio">Relatórios</a>
+            <a href="/servicos">Serviços</a>
+            <a href="/logout">Sair</a>
+        </nav>
+    </div>
+    <div class="content">
+
+        <h2>Ranking dos 3 Motoristas com Menos Relatos</h2>
+        <ul>
+            {% for user, count in top_users %}
+            <li>{{ user }} - {{ count }} relatos</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Criar Serviços</h2>
+
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div>
+                <label>Nome do Serviço:</label>
+                {{ form.name(size=32) }}
+            </div>
+            <div>
+                <label>Local de Saída:</label>
+                {{ form.departure(size=32) }}
+            </div>
+            <div>
+                <label>Local de Chegada:</label>
+                {{ form.arrival(size=32) }}
+            </div>
+            <div>
+                <label>Horário:</label>
+                {{ form.time() }}
+            </div>
+            <div>
+                <label>Preço:</label>
+                {{ form.price() }}
+            </div>
+            <div>
+                <label>Data:</label>
+                {{ form.date() }}
+            </div>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+
+        <h2>Serviços Disponíveis</h2>
+<div class="services-container">
+    {% for service in services %}
+    <div class="service-card">
+        <div class="service-info">
+            <strong>{{ service.name }}</strong><br>
+            <span>{{ service.date.strftime('%d/%m/%Y') }}</span> - 
+            <span>{{ service.time }}</span>
+        </div>
+        <div class="service-location">
+            <strong>Local de Saída:</strong> {{ service.departure }}
+        </div>
+        <div class="service-location">
+            <strong>Local de Chegada:</strong> {{ service.arrival }}
+        </div>
+        <div class="service-price">
+            <strong>Preço:</strong> R$ {{ service.price }}<br>
+            {% if service.designated_for %}
+                <strong>Designado para:</strong> {{ service.designated_for }}
+            {% else %}
+                <form action="{{ url_for('designate_service', service_id=service._id) }}" method="post">
+                    <select name="username" required>
+                        <option value="">Selecione um usuário</option>
+                        {% for user in all_users %}
+                        <option value="{{ user }}">{{ user }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Designar">
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+    </div>
+</body>
+</html>

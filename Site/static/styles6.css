@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    transition: margin-left 0.3s;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.sidebar {
+    position: fixed; /* Mantém o sidebar fixo */
+    top: 0;
+    left: 0;
+    width: 200px; /* Largura expandida */
+    height: 100%;
+    background-color: hsl(0, 0%, 20%); /* Ajustado para a cor do Style 3 */
+    color: #fff;
+    transition: width 0.3s;
+    overflow-x: hidden;
+    padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px; /* Ajustado para o estilo 3 */
+    left: 10px; /* Ajustado para o estilo 3 */
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.bar {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px 0;
+    transition: background-color 0.3s;
+}
+
+.sidebar-menu {
+    margin-top: 60px;
+    visibility: visible; /* Manter visibilidade padrão */
+    opacity: 1; /* Manter opacidade padrão */
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.sidebar-menu a {
+    display: block;
+    color: #fff;
+    padding: 10px 20px; /* Ajustado para o estilo 3 */
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.sidebar-menu a:hover {
+    background-color: #575757; /* Ajustado para o estilo 3 */
+}
+
+.menu-toggle:checked ~ .sidebar {
+    width: 60px; /* Largura retraída */
+}
+
+.menu-toggle:checked ~ .sidebar .sidebar-menu {
+    visibility: hidden;
+    opacity: 0; /* Ajustado para manter o efeito de transição */
+}
+
+.menu-toggle:checked ~ .sidebar .sidebar-menu a {
+    text-align: center;
+    padding: 12px 0; /* Mantido conforme o original */
+}
+
+.menu-toggle:checked ~ .sidebar .bar {
+    background-color: hsl(0, 0%, 100%);
+}
+
+.content {
+    margin-left: 250px; /* Ajuste inicial para o conteúdo */
+    transition: margin-left 0.3s;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh; /* Garante que o conteúdo ocupe toda a altura */
+}
+
+.menu-toggle:checked ~ .content {
+    margin-left: 100px; /* Ajuste quando a barra lateral estiver retraída */
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    transition: border-color 0.3s;
+}
+
+select:focus, button:focus {
+    outline: none;
+    border-color: #333;
+}
+
+button {
+    background-color: #00ff55;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    color:#fff
+}
+
+.grafico-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.grafico-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    background-color: #ffffff; /* Fundo branco */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+    margin-bottom: 30px; /* Espaçamento inferior */
+    border-left: 5px solid #007bff; /* Borda lateral azul para destaque */
+    transition: transform 0.3s; /* Transição suave */
+}
+
+.form-container:hover {
+    transform: scale(1.02); /* Efeito de zoom ao passar o mouse */
+}
+
+h1, h2 {
+    margin-top: 0; /* Remove margem superior */
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+    display: block; /* Garante que os rótulos ocupem toda a largura */
+}
+
+select, input, button {
+    width: calc(100% - 20px); /* Considera o padding para não ultrapassar a largura */
+    padding: 10px; /* Padding consistente */
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f8f9fa; /* Fundo claro para inputs */
+    transition: border-color 0.3s;
+}
+
+select:focus, input:focus, button:focus {
+    outline: none;
+    border-color: #007bff; /* Cor do foco */
+    background-color: #ffffff; /* Fundo branco ao focar */
+}
+
+/* Estilo do modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fixa no viewport */
+    z-index: 1; /* Fica acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Adiciona scroll se necessário */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin-top: 50px;
+    margin: auto; /* Centraliza o modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Largura do modal */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
